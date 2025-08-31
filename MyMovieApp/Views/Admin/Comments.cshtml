@@ -1,0 +1,45 @@
+﻿@model List<MyMovieApp.Models.Comment>
+
+@{
+    ViewData["Title"] = "Comments";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">📢 User Comments</h2>
+
+    @if (Model.Count == 0)
+    {
+        <p>No comments found.</p>
+    }
+    else
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Film</th>
+                    <th>User</th>
+                    <th>Comment</th>
+                    <th>Date</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var comment in Model)
+                {
+                    <tr>
+                        <td>@comment.Movie?.Title</td>
+                        <td>@comment.User?.Email?.Split('@')[0]</td>
+                        <td>@comment.Content</td>
+                        <td>@comment.CreatedAt.ToString("g")</td>
+                        <td>
+                            <form asp-controller="Admin" asp-action="DeleteComment" method="post">
+                                <input type="hidden" name="id" value="@comment.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

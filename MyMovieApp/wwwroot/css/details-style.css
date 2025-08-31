@@ -1,0 +1,91 @@
+
+/* Details Sayfası Tasarımı */
+.details-container {
+    background-color: #111010;
+    color: #e5dac0;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(232, 170, 30, 0.2);
+}
+
+.details-container h2 {
+    color: #e8aa1e;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.details-container p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.details-container strong {
+    color: #e8aa1e;
+}
+
+.details-container .btn {
+    margin: 0.25rem 0.25rem 0.25rem 0;
+}
+
+.details-container .btn-warning {
+    background-color: #e8aa1e;
+    border-color: #e8aa1e;
+    color: #111010;
+}
+
+.details-container .btn-warning:hover {
+    background-color: #d4981c;
+    border-color: #d4981c;
+}
+
+.details-container .btn-secondary {
+    background-color: #8a6e49;
+    border-color: #8a6e49;
+}
+
+.details-container .btn-secondary:hover {
+    background-color: #725839;
+    border-color: #725839;
+}
+
+.details-container .btn-danger {
+    background-color: #5f4d37;
+    border-color: #5f4d37;
+}
+
+.details-container .btn-danger:hover {
+    background-color: #4c3e2c;
+    border-color: #4c3e2c;
+}
+
+.details-container .list-group-item {
+    background-color: #1b1a1a;
+    border-color: #5f4d37;
+    color: #e5dac0;
+}
+
+.details-container textarea {
+    background-color: #1b1a1a;
+    color: #e5dac0;
+    border-color: #5f4d37;
+}
+
+.details-container textarea:focus {
+    background-color: #1b1a1a;
+    color: #e5dac0;
+    border-color: #e8aa1e;
+    box-shadow: none;
+}
+
+.details-container input[type="number"] {
+    background-color: #1b1a1a;
+    color: #e5dac0;
+    border-color: #5f4d37;
+}
+
+.details-container input[type="number"]:focus {
+    background-color: #1b1a1a;
+    color: #e5dac0;
+    border-color: #e8aa1e;
+    box-shadow: none;
+}

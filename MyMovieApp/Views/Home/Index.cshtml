@@ -1,0 +1,79 @@
+﻿@model MyMovieApp.Models.HomePageViewModel
+
+@{
+    ViewData["Title"] = "Anasayfa";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">🔥 Popular Films</h2>
+
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @foreach (var movie in Model.PopularMovies)
+        {
+            <div class="col">
+                <div class="card h-100 shadow">
+                    <img src="@($"https://image.tmdb.org/t/p/w500{movie.PosterPath}")"
+                         class="card-img-top card-homepage" alt="@movie.Title" />
+                    <div class="card-body">
+                        <h5 class="card-title">@movie.Title</h5>
+                        <p class="card-text">
+                            @(movie.ReleaseDate != null ? movie.ReleaseDate : "Unknown")
+                        </p>
+                        <a asp-controller="Movie" asp-action="Details" asp-route-tmdbId="@movie.Id" class="btn btn-sm btn-primary">
+                            Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <hr class="my-5" />
+    <h2 class="mb-4">🆕 New Releases</h2>
+
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @foreach (var movie in Model.NowPlayingMovies)
+        {
+            <div class="col">
+                <div class="card h-100 shadow">
+                    <img src="@($"https://image.tmdb.org/t/p/w500{movie.PosterPath}")"
+                         class="card-img-top" alt="@movie.Title" />
+                    <div class="card-body">
+                        <h5 class="card-title">@movie.Title</h5>
+                        <p class="card-text">
+                            @(movie.ReleaseDate != null ? movie.ReleaseDate : "Unknown")
+                        </p>
+                        <a asp-controller="Movie" asp-action="Details" asp-route-tmdbId="@movie.Id" class="btn btn-sm btn-primary">
+                            Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <hr class="my-5" />
+    <h2 class="mb-4">🌟 Top Ratings</h2>
+
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @foreach (var movie in Model.TopRatedMovies)
+        {
+            <div class="col">
+                <div class="card h-100 shadow">
+                    <img src="@($"https://image.tmdb.org/t/p/w500{movie.PosterPath}")"
+                         class="card-img-top" alt="@movie.Title" />
+                    <div class="card-body">
+                        <h5 class="card-title">@movie.Title</h5>
+                        <p class="card-text">
+                            @(movie.ReleaseDate != null ? movie.ReleaseDate : "Unknown")
+                        </p>
+                        <a asp-controller="Movie" asp-action="Details" asp-route-tmdbId="@movie.Id" class="btn btn-sm btn-primary">
+                            Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>

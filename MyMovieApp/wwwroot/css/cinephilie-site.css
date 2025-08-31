@@ -1,0 +1,133 @@
+
+/* Genel stil ayarları */
+body {
+    background-color: #111010;
+    color: #e5dac0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Başlıklar */
+h2 {
+    color: #e8aa1e;
+    font-weight: bold;
+}
+
+/* Kart tasarımı */
+.card {
+    background-color: #1b1b1b;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+/* Film görselleri */
+.card-img-top {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    height: 100%;
+}
+
+.card-homepage{
+    height: 100%;
+}
+
+
+/* Başlık ve metinler */
+.card-title {
+    color: #e8aa1e;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.card-text {
+    color: #e5dac0;
+    font-size: 0.9rem;
+}
+
+/* Detay butonu */
+.btn-primary,
+.btn-warning {
+    background-color: #e8aa1e;
+    border: none;
+    color: #111010;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+    .btn-primary:hover,
+    .btn-warning:hover {
+        background-color: #c89017;
+        color: #e5dac0;
+    }
+
+/* Ayırıcı çizgi */
+hr {
+    border-top: 2px solid #5f4d37;
+}
+
+.form-control {
+    color: #e5dac0;
+    background-color: #1b1b1b;
+    font-weight: bold;
+}
+
+.form-control:focus {
+    background-color: #1b1b1b;
+    color: #e5dac0;
+    box-shadow: 0 0 0 0.2rem #e8aa1e;
+}
+
+#form-rate {
+    height: 40px;
+}
+
+#form-rate-btn {
+    height: 40px;
+    position: relative;
+    top: -15px;
+}
+
+.list-group-item {
+    background-color: #1b1b1b;
+    color: #e5dac0;
+    border: none;
+}
+
+.btn-danger {
+    background-color: #FF001A;
+    color: #e5dac0;
+    font-weight: bold;
+}
+
+    .btn-danger:hover {
+        background-color: #7B2029;
+        color: #111010;
+    }
+
+.form-select {
+    background-color: #1b1b1b;
+    color: #868686;
+}
+
+#search-btn-lists {
+    position: relative;
+    top: -14px;
+}
+
+#forgot-password{
+        color: #e5dac0;
+}
+
+#login-submit {
+    margin-bottom: 50px;
+}
+
+.table{
+    background-color: #1b1b1b;
+    color: #e5dac0;
+}

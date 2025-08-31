@@ -1,0 +1,72 @@
+﻿@model List<MyMovieApp.Models.TmdbMovieDto>
+@{
+    ViewData["Title"] = "Film Ara";
+    var genreList = ViewBag.Genres as List<MyMovieApp.Models.TmdbGenre>;
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">🔍 Search a film</h2>
+
+    <form method="get" asp-controller="Movie" asp-action="Search" class="mb-4">
+        <div class="row g-2">
+            <div class="col-md-4">
+                <input type="text" name="query" class="form-control" placeholder="Type a film..." />
+            </div>
+
+            <div class="col-md-2">
+                <input type="number" name="year" class="form-control" placeholder="Year (ex: 2020)" />
+            </div>
+
+            <div class="col-md-3">
+                <select name="genreId" class="form-select">
+                    <option value="">All Genres</option>
+                    @if (genreList != null)
+                    {
+                        foreach (var genre in genreList)
+                        {
+                            <option value="@genre.Id">@genre.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <input type="number" step="0.1" name="minRating" class="form-control" placeholder="Min Rate" />
+            </div>
+
+            <div class="col-md-1">
+                <button type="submit" id="search-btn-lists" class="btn btn-primary w-100">Search</button>
+            </div>
+        </div>
+    </form>
+
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var movie in Model)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow">
+                        @if (!string.IsNullOrEmpty(movie.PosterPath))
+                        {
+                            <img src="@($"https://image.tmdb.org/t/p/w500{movie.PosterPath}")" class="card-img-top" alt="@movie.Title" />
+                        }
+                        else
+                        {
+                            <img src="@Url.Content("~/images/no-image.png")" class="card-img-top" alt="No image" /> //razor syntax her zaman çalışır
+                        }
+
+
+                        <div class="card-body">
+                            <h5 class="card-title">@movie.Title</h5>
+                            <p class="card-text">@movie.Overview?.Substring(0, Math.Min(120, movie.Overview.Length))...</p>
+                            <p><strong>Genre:</strong> @(string.IsNullOrWhiteSpace(movie.GenreNames) ? "Unknown" : movie.GenreNames)</p>
+                            <p><strong>Realese Date:</strong> @(string.IsNullOrEmpty(movie.ReleaseDate) ? "Unknown" : movie.ReleaseDate)</p>
+                            <a asp-controller="Movie" asp-action="Details" asp-route-tmdbId="@movie.Id" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

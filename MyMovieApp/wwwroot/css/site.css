@@ -1,0 +1,87 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+/* NAVBAR ARKA PLAN + GÖLGE */
+.navbar {
+    background-color: #111010 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* LÝNKLER */
+.navbar-nav .nav-link {
+    color: #e5dac0 !important;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    position: relative;
+}
+
+    /* HOVER EFEKTÝ (ALT ÇÝZGÝ ANÝMASYONLU) */
+    .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 4px;
+        left: 0;
+        width: 0%;
+        height: 2px;
+        background-color: #e8aa1e;
+        transition: width 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover::after {
+        width: 100%;
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: #e8aa1e !important;
+    }
+
+    /* AKTÝF LÝNK */
+    .navbar-nav .nav-link.active {
+        color: #e8aa1e !important;
+        font-weight: bold;
+    }
+
+/* DROPDOWN MENÜ */
+.dropdown-menu {
+    background-color: #1c1c1c;
+    border: none;
+}
+
+.dropdown-item {
+    color: #e5dac0;
+    transition: background-color 0.2s ease;
+}
+
+    .dropdown-item:hover {
+        background-color: #5f4d37;
+        color: #fff;
+    }
+
+/* LOGO SABÝTLEME */
+.navbar-brand img {
+    height: 60px;
+    filter: drop-shadow(0 0 0.8px #e8aa1e);
+}

@@ -1,0 +1,71 @@
+﻿@model MyMovieApp.Models.MyListsViewModel
+
+@{
+    ViewData["Title"] = "My Lists";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">📋 My Watchlist</h2>
+
+    @if (Model.Watchlist != null && Model.Watchlist.Count > 0)
+    {
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var item in Model.Watchlist)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow">
+                        <img src="@(!string.IsNullOrEmpty(item.Movie.PosterPath)
+                                                              ? $"https://image.tmdb.org/t/p/w500{item.Movie.PosterPath}"
+                                                              : "/images/no-image.png")" class="card-img-top" alt="@item.Movie.Title" />
+                <div class="card-body">
+                    <h5 class="card-title">@item.Movie.Title</h5>
+                    <a asp-controller="Movie" asp-action="Details" asp-route-tmdbId="@item.Movie.TmdbId" class="btn btn-sm btn-primary">Details</a>
+
+                            <form asp-controller="User" asp-action="RemoveFromWatchlist" method="post" class="mt-2">
+                                <input type="hidden" name="movieId" value="@item.Movie.MovieId" />
+                                <button type="submit" class="btn btn-sm btn-danger">Remove from List</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                }
+        </div>
+    }
+    else
+    {
+        <p>İzleme listeniz boş.</p>
+    }
+
+    <hr class="my-5" />
+
+    <h2 class="mb-4">❤️ Movies I Liked</h2>
+
+    @if (Model.Liked != null && Model.Liked.Count > 0)
+    {
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var item in Model.Liked)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow">
+                        <img src="@(!string.IsNullOrEmpty(item.Movie.PosterPath)
+                                                              ? $"https://image.tmdb.org/t/p/w500{item.Movie.PosterPath}"
+                                                              : "/images/no-image.png")" class="card-img-top" alt="@item.Movie.Title" />
+                <div class="card-body">
+                    <h5 class="card-title">@item.Movie.Title</h5>
+                    <a asp-controller="Movie" asp-action="Details" asp-route-tmdbId="@item.Movie.TmdbId" class="btn btn-sm btn-primary">Details</a>
+
+                            <form asp-controller="User" asp-action="RemoveFromLiked" method="post" class="mt-2">
+                                <input type="hidden" name="movieId" value="@item.Movie.MovieId" />
+                                <button type="submit" class="btn btn-sm btn-danger">Unlike</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                }
+        </div>
+    }
+    else
+    {
+        <p>Henüz beğendiğiniz film yok.</p>
+    }
+</div>

@@ -1,0 +1,79 @@
+﻿@model MyMovieApp.Models.Movie
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@($"https://image.tmdb.org/t/p/w500{Model.PosterPath}")" class="img-fluid" alt="@Model.Title" />
+        </div>
+        <div class="col-md-8">
+            <h2>@Model.Title</h2>
+            <p><strong>Director:</strong> @(string.IsNullOrWhiteSpace(Model.Director) ? "Unknown" : Model.Director)</p>
+            <p><strong>Realese Date:</strong> @(Model.ReleaseDate == DateTime.MinValue ? "Unknown" : Model.ReleaseDate.ToShortDateString())</p>
+            <p>@Model.Overview</p>
+            <p><strong>Ratings:</strong> @Model.AverageRating / 10</p>
+            <p><strong>Total Views:</strong> @Model.TotalWatchedCount</p>
+            <form asp-controller="Movie" asp-action="AddToWatchlist" method="post">
+                <input type="hidden" name="tmdbId" value="@Model.TmdbId" />
+                <button type="submit" class="btn btn-primary">Watchlist+</button>
+            </form>
+            <form asp-controller="Movie" asp-action="LikeMovie" method="post" class="d-inline">
+                <input type="hidden" name="tmdbId" value="@Model.TmdbId" />
+                <button type="submit" class="btn btn-primary">Like ❤️</button>
+            </form>
+            <form asp-controller="Movie" asp-action="MarkAsWatched" method="post" class="d-inline">
+                <input type="hidden" name="tmdbId" value="@Model.TmdbId" />
+                <button type="submit" class="btn btn-primary">Watched ✅</button>
+            </form>
+
+            @if (User?.Identity?.IsAuthenticated == true)
+            {
+                <form asp-controller="Movie" asp-action="RateMovie" method="post" class="mt-3">
+                    <input type="hidden" name="tmdbId" value="@Model.TmdbId" />
+                    <div class="input-group" style="max-width: 200px;">
+                        <input type="number" id="form-rate" name="score" min="1" max="10" class="form-control" placeholder="Rate(1-10)" required />
+                        <button type="submit" class="btn btn-primary" id="form-rate-btn">Rate ⭐</button>
+                    </div>
+                </form>
+            }
+
+            @if (User?.Identity?.IsAuthenticated == true)
+            {
+                <form asp-controller="Movie" asp-action="PostComment" method="post" class="mt-4">
+                    <input type="hidden" name="tmdbId" value="@Model.TmdbId" />
+                    <div class="mb-3">
+                        <textarea name="content" class="form-control" placeholder="Type your comment..." rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Submit</button>
+                </form>
+            }
+
+            @inject MyMovieApp.Data.ApplicationDbContext _context
+            @using Microsoft.EntityFrameworkCore
+
+            @{
+                var comments = _context.Comments
+                .Include(c => c.User)
+                .Where(c => c.Movie.TmdbId == Model.TmdbId)
+                .OrderByDescending(c => c.CreatedAt)
+                .ToList();
+            }
+
+            @if (comments.Any())
+            {
+                <h4 class="mt-5">Comments</h4>
+                <ul class="list-group mt-2">
+                    @foreach (var comment in comments)
+                    {
+                        <li class="list-group-item">
+                            <strong>@(comment.User?.Email?.Split('@')[0] ?? "Anonim")</strong>
+                            <small class="text-muted">(@comment.CreatedAt.ToString("g"))</small>
+                            <p>@comment.Content</p>
+                        </li>
+                    }
+                </ul>
+            }
+
+
+        </div>
+    </div>
+</div>
