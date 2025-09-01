@@ -1,0 +1,1 @@
+web: dotnet MyMovieApp.dll --server.urls http://+:$PORT

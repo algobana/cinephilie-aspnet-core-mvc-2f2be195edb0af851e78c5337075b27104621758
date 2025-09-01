@@ -1,0 +1,9 @@
+{
+  "name": "cinephilie-app",
+  "description": "Movie App with TMDB API",
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-dotnetcore"
+    }
+  ]
+}
